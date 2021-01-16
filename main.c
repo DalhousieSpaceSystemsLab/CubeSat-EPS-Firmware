@@ -4,22 +4,22 @@
 #include "LoadSwitches.h"
 
 
-/**
- * main.c
+/*
+ * LoadSwitchISR.c
+ *
+ *  Created on: Jan 15, 2021
+ *      Author: Liam MacDonald, Brandon Allen, Mark McCoy
  */
 
 void load_switch_test(void);
 
-int main(void)
-{
+int main(void){
 	WDTCTL = WDTPW | WDTHOLD;	// stop watchdog timer
 	__bis_SR_register(GIE);     //enables interrupts
 
 	init_fault_pins();
 
-	load_switch_test();
-	//other code
-
+	//load_switch_test();
 	return 0;
 }
 

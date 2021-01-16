@@ -17,7 +17,7 @@ volatile unsigned int RF_3V3_Fault_Count;
 void init_fault_pins(void){
     P1DIR &= ~0x3F; //Pins 1.0 to 1.5 set to input
     P1REN |= 0x3F; //Enables resistors for pins 1.0 to 1.5
-    //P1OUT |= 0x3F; // Makes internal resistor a pull up resistor
+    P1OUT |= 0x3F; // Makes internal resistor a pull up resistor
     P1IES |= 0x3F; //Sets interrupt triggers for pins 1.0 to 1.5 to high to low
     P1IFG &= ~0x3F; //Clears interrupt flags for pins 1.0 to 1.5
     P1IE &= ~0xFF; //Clears interrupt pins for all of port 1
