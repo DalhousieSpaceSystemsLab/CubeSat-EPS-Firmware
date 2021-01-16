@@ -17,6 +17,7 @@ int main(void)
 
 	P1DIR &= ~0x3F; //Pins 1.0 to 1.5 set to input
 	P1REN |= 0x3F; //Enables resistors for pins 1.0 to 1.5
+	P1OUT |= 0x3F; // Makes internal resistor a pull up resistor
 	P1IES |= 0x3F; //Sets interrupt triggers for pins 1.0 to 1.5 to high to low
 	P1IFG &= ~0x3F; //Clears interrupt flags for pins 1.0 to 1.5
 	P1IE &= ~0xFF; //Clears interrupt pins for all of port 1
@@ -45,7 +46,8 @@ __interrupt void LOADswitchISR(void)
 {
 
     switch(__even_in_range(P1IV, 12)){
-    case 0: break;                                          //None
+    case 0:
+        break;                                          //None
     case 2:                                                 //Pin 1.0: OBC-5V-Fault
         OBC_5V_Fault_Count++;
         P1IFG &= ~BIT0;
