@@ -41,3 +41,65 @@ Release/
 .launches/
 .metadata/
 RemoteSystemsTempFiles/
+.project
+.jxbrowser-data/Web Data-journal
+.jxbrowser-data/Web Data
+.jxbrowser-data/Visited Links
+.jxbrowser-data/user_prefs.json
+.jxbrowser-data/Sync Data/LevelDB/MANIFEST-000001
+.jxbrowser-data/Sync Data/LevelDB/LOG
+.jxbrowser-data/Sync Data/LevelDB/LOCK
+.jxbrowser-data/Sync Data/LevelDB/CURRENT
+.jxbrowser-data/Sync Data/LevelDB/000003.log
+.jxbrowser-data/QuotaManager-journal
+.jxbrowser-data/QuotaManager
+.jxbrowser-data/Login Data-journal
+.jxbrowser-data/Login Data
+.jxbrowser-data/Local Storage/leveldb/MANIFEST-000001
+.jxbrowser-data/Local Storage/leveldb/LOG
+.jxbrowser-data/Local Storage/leveldb/LOCK
+.jxbrowser-data/Local Storage/leveldb/CURRENT
+.jxbrowser-data/Local Storage/leveldb/000003.log
+.jxbrowser-data/Local Storage/https_www.youtube-nocookie.com_0.localstorage-journal
+.jxbrowser-data/Local Storage/https_www.youtube-nocookie.com_0.localstorage
+.jxbrowser-data/Local Storage - EXT/http_127.0.0.1.localstorage
+.jxbrowser-data/Local Storage - EXT/file_null.localstorage
+.jxbrowser-data/IndexedDB/https_www.youtube-nocookie.com_0.indexeddb.leveldb/MANIFEST-000001
+.jxbrowser-data/IndexedDB/https_www.youtube-nocookie.com_0.indexeddb.leveldb/LOG.old
+.jxbrowser-data/IndexedDB/https_www.youtube-nocookie.com_0.indexeddb.leveldb/LOG
+.jxbrowser-data/IndexedDB/https_www.youtube-nocookie.com_0.indexeddb.leveldb/LOCK
+.jxbrowser-data/IndexedDB/https_www.youtube-nocookie.com_0.indexeddb.leveldb/CURRENT
+.jxbrowser-data/IndexedDB/https_www.youtube-nocookie.com_0.indexeddb.leveldb/000003.log
+.jxbrowser-data/History-journal
+.jxbrowser-data/History
+.jxbrowser-data/GPUCache/index
+.jxbrowser-data/GPUCache/f_000002
+.jxbrowser-data/GPUCache/f_000001
+.jxbrowser-data/GPUCache/data_3
+.jxbrowser-data/GPUCache/data_2
+.jxbrowser-data/GPUCache/data_1
+.jxbrowser-data/GPUCache/data_0
+.jxbrowser-data/Favicons-journal
+.jxbrowser-data/Favicons
+.jxbrowser-data/databases/Databases.db-journal
+.jxbrowser-data/databases/Databases.db
+.jxbrowser-data/Cookies-journal
+.jxbrowser-data/Cookies
+.jxbrowser-data/Cache/index
+.jxbrowser-data/Cache/f_00000f
+.jxbrowser-data/Cache/f_00000e
+.jxbrowser-data/Cache/f_00000d
+.jxbrowser-data/Cache/f_00000c
+.jxbrowser-data/Cache/f_00000b
+.jxbrowser-data/Cache/f_00000a
+.jxbrowser-data/Cache/f_000009
+.jxbrowser-data/Cache/f_000008
+.jxbrowser-data/Cache/f_000007
+.jxbrowser-data/Cache/f_000005
+.jxbrowser-data/Cache/f_000004
+.jxbrowser-data/Cache/f_000003
+.jxbrowser-data/Cache/f_000002
+.jxbrowser-data/Cache/data_3
+.jxbrowser-data/Cache/data_2
+.jxbrowser-data/Cache/data_1
+.jxbrowser-data/Cache/data_0
