@@ -7,6 +7,9 @@
 #ifndef OBCUART_H_
 #define OBCUART_H_
 
+#include <stdio.h>
+#include <msp430.h>
+
 #define UART_BUFFER_SIZE 64
 #define TRUE 1
 #define FALSE 0

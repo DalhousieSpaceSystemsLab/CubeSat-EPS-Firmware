@@ -2,7 +2,7 @@
 #include <msp430.h> 
 
 #include "LoadSwitches.h"
-
+#include "OBCUart.h"
 
 /*
  * LoadSwitchISR.c
@@ -18,8 +18,8 @@ int main(void){
 	__bis_SR_register(GIE);     //enables interrupts
 
 	init_fault_pins();
+	uart_init();
 
-	//load_switch_test();
 	return 0;
 }
 
@@ -42,3 +42,5 @@ void load_switch_test(void){
             printf("RF-3V3-Faults: %d\n", RF_3V3_Fault_Count);
         }
 }
+
+

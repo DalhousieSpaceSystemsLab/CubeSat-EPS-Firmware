@@ -5,7 +5,7 @@
  *  Author: Siyan Zhang, siyan.zhang@dal.ca
  */
 
-#include <PBCUart.h>
+#include "OBCUart.h"
 
 unsigned int stringReady = FALSE;					//string received flag
 char string[UART_BUFFER_SIZE] = {"\x00\x00"};		//UART String Buffer
