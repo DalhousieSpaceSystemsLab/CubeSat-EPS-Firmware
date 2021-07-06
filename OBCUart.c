@@ -9,7 +9,7 @@
 
 unsigned int stringReady = FALSE;					//string received flag
 char string[UART_BUFFER_SIZE] = {"\x00\x00"};		//UART String Buffer
-unsigned int RxByteCnt = 0;                           		//Received String Length Counter
+unsigned int RxByteCnt = 0;                         //Received String Length Counter
 
 //******************************************************************************
 //********************UART Interrupt Service Routine****************************
