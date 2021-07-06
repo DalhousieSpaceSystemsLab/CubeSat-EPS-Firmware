@@ -9,7 +9,7 @@
 
 unsigned int stringReady = FALSE;					//string received flag
 char string[UART_BUFFER_SIZE] = {"\x00\x00"};		//UART String Buffer
-unsigned int i = 0;                           		//Received String Length Counter
+unsigned int RxByteCnt = 0;                           		//Received String Length Counter
 
 //******************************************************************************
 //********************UART Interrupt Service Routine****************************
@@ -29,12 +29,12 @@ void __attribute__ ((interrupt(USCI_A0_VECTOR))) USCI_A0_ISR (void)
   case 0:break;									// Vector 0 - no interrupt
   case 2:										// Vector 2 - RXIFG
     P1OUT |= BIT0;
-    string[i++] = UCA0RXBUF;					// Store the reveived char
+    string[RxByteCnt++] = UCA0RXBUF;			// Store the reveived char
     if (UCA0RXBUF == '\r')						// '\r' received?
     {
       //string[i++] = '\n';						// Append new line at the end of string.
       //string[i] = '\r';
-      i = 0;             						// Reset the length counter
+      RxByteCnt = 0;             				// Reset the length counter
       stringReady = TRUE;						// Set the string ready flag
       //UCA0IE |= UCTXIE;						// Enable USCI_A0 TX interrupt
     }
@@ -42,11 +42,11 @@ void __attribute__ ((interrupt(USCI_A0_VECTOR))) USCI_A0_ISR (void)
     break;
   case 4:										// Vector 4 - TXIFG
     P4OUT |= BIT7;
-    /*UCA0TXBUF = string[i++];					// TX next character
-    if (string[i] == '\x0d')					// TX over?
+    /*UCA0TXBUF = string[RxByteCnt++];			// TX next character
+    if (string[RxByteCnt] == '\x0d')			// TX over?
     {
        UCA0IE &= ~UCTXIE;						// Disable USCI_A0 TX interrupt
-       i = 0;									// Clear the counter
+       RxByteCnt = 0;							// Clear the counter
     }*/
     P4OUT &= ~BIT7;
     break;
