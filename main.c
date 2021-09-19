@@ -20,6 +20,15 @@ int main(void){
 	init_fault_pins();
 	uart_init();
 
+	while(1){
+	    //collect telemetry
+	    //monitor task
+	    //OBC communication task
+	    //battery task
+	    //go to sleep
+	}
+
+
 	return 0;
 }
 
