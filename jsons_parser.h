@@ -1,6 +1,9 @@
 #ifndef __JSONS_H__
 #define __JSONS_H__
 #ifdef __cplusplus
+
+/*
+
 /* clang-format off */
 extern "C"
 {
@@ -24,3 +27,5 @@ int json_parse(uint8_t *json);
 /* clang-format on */
 #endif /* End C linkage */
 #endif /* __JSONS_H__ */
+
+

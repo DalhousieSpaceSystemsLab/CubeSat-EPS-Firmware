@@ -11,6 +11,8 @@
  *
  */
 
+/*
+
 #include <stdint.h>
 #include <limits.h>
 #include <stdlib.h>
@@ -41,17 +43,17 @@ static jtok_tkn_t tkns[JSON_TKN_CNT];
 static char       value_holder[50];
 
 
-/* JSON HANDLER DECLARATIONS */
+// JSON HANDLER DECLARATIONS
 //static void *parse_hardware_json(json_handler_args args);
 
-/* JSON PARSE TABLE */
-/* clang-format off */
+// JSON PARSE TABLE
+// clang-format off
 static const json_parse_table_item json_parse_table[] = {
 
   //  {.key = "fwVersion",  .handler = parse_firmware_json},
 
   };
-/* clang-format on */
+// clang-format on
 
 
 int json_parse(uint8_t *json)
@@ -70,23 +72,20 @@ int json_parse(uint8_t *json)
     else
     {
 
-        token_index_t t; /* token index */
-        token_index_t k; /* key index for json table */
+        token_index_t t; // token index
+        token_index_t k; // key index for json table
         t = 0;
         if (isValidJson(tkns, JSON_TKN_CNT))
         {
-            /* Go through command table and check if we have a registered
-             * command for the key */
+             // Go through command table and check if we have a registered
+             // command for the key
             t++;
 
             unsigned int k_max =
                 sizeof(json_parse_table) / sizeof(*json_parse_table);
             for (k = 0; k < k_max; k++)
             {
-                /*
-                 * If we have a command for the current key,
-                 * execute the command handler
-                 */
+
                 if (jtok_tokcmp(json_parse_table[k].key, &tkns[t]))
                 {
                     if (NULL != json_parse_table[k].handler)
@@ -102,7 +101,7 @@ int json_parse(uint8_t *json)
                 }
             }
 
-            /* No match with supported json keys */
+            //No match with supported json keys
             if (k >= k_max)
             {
                 json_parse_status = -1;
