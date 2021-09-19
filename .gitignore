@@ -103,3 +103,5 @@ RemoteSystemsTempFiles/
 .jxbrowser-data/Cache/data_2
 .jxbrowser-data/Cache/data_1
 .jxbrowser-data/Cache/data_0
+
+.DS_Store
