@@ -94,3 +94,101 @@ int uart_puts(char *str)
     }
     return status;
 }
+
+
+
+/* UART DMA Rx / Tx  */
+
+//P3.4 = USCI_A0 TXD
+
+void init_OBC_uart(void){
+    //Stop Watchdog Timer
+    WDT_A_hold(WDT_A_BASE);
+
+    //P3.4 = USCI_A0 TXD
+    GPIO_setAsPeripheralModuleFunctionInputPin(
+        GPIO_PORT_P3,
+        GPIO_PIN3
+        );
+
+	USCI_A_UART_initParam param1 = {0};
+    param1.selectClockSource = USCI_A_UART_CLOCKSOURCE_SMCLK;
+    param1.clockPrescalar = 6;
+    param1.firstModReg = 13;
+    param1.secondModReg = 0;
+    param1.parity = USCI_A_UART_NO_PARITY;
+    param1.msborLsbFirst = USCI_A_UART_LSB_FIRST;
+    param1.numberofStopBits = USCI_A_UART_ONE_STOP_BIT;
+    param1.uartMode = USCI_A_UART_MODE;
+    param1.overSampling = USCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
+
+    if (STATUS_FAIL == USCI_A_UART_init(USCI_A0_BASE, &param1)){
+        return;
+    }
+	
+	//Enable UART module for operation
+    USCI_A_UART_enable(USCI_A0_BASE);
+
+
+    //Initialize and Setup DMA Channel 0
+    /*
+     * Configure DMA channel 0
+     * Configure channel for repeated single transfers
+     * DMA interrupt flag will be set after every 12 transfers
+     * Use DMA Trigger Source 1 (TA0CCR0IFG)
+     * Transfer Byte-to-byte
+     * Trigger Upon Rising Edge of Trigger Source Signal
+     */
+    DMA_initParam param2 = {0};
+    param2.channelSelect = DMA_CHANNEL_0;
+    param2.transferModeSelect = DMA_TRANSFER_REPEATED_SINGLE;
+    param2.transferSize = (sizeof String1 - 1);
+    param2.triggerSourceSelect = DMA_TRIGGERSOURCE_1;
+    param2.transferUnitSelect = DMA_SIZE_SRCBYTE_DSTBYTE;
+    param2.triggerTypeSelect = DMA_TRIGGER_RISINGEDGE;
+    DMA_init(&param2);
+    /*
+     * Configure DMA channel 0
+     * Use String1 as source
+     * Increment source address after every transfer
+     */
+    DMA_setSrcAddress(DMA_CHANNEL_0,
+        (uint32_t)(uintptr_t)String1,
+        DMA_DIRECTION_INCREMENT);
+    /*
+     * Base Address of the DMA Module
+     * Configure DMA channel 0
+     * Use UART TX Buffer as destination
+     * Don't move the destination address after every transfer
+     */
+    DMA_setDstAddress(DMA_CHANNEL_0,
+        USCI_A_UART_getTransmitBufferAddressForDMA(USCI_A0_BASE),
+        DMA_DIRECTION_UNCHANGED);
+
+    //Enable transfers on DMA channel 0
+    DMA_enableTransfers(DMA_CHANNEL_0);
+
+    //For DMA0 trigger
+   	Timer_A_initCompareModeParam initCompareModeParam = {0};
+    initCompareModeParam.compareRegister = TIMER_A_CAPTURECOMPARE_REGISTER_2;
+    initCompareModeParam.compareInterruptEnable = TIMER_A_CAPTURECOMPARE_INTERRUPT_DISABLE;
+    initCompareModeParam.compareOutputMode = TIMER_A_OUTPUTMODE_OUTBITVALUE;
+    initCompareModeParam.compareValue = 1;
+    Timer_A_initCompareMode(TIMER_A0_BASE, &initCompareModeParam);
+
+    //Timer sourced by SMCLK, starts in up-mode
+    Timer_A_initUpModeParam initUpModeParam = {0};
+    initUpModeParam.clockSource = TIMER_A_CLOCKSOURCE_SMCLK;
+    initUpModeParam.clockSourceDivider = TIMER_A_CLOCKSOURCE_DIVIDER_1;
+    initUpModeParam.timerPeriod = 0x8192;
+    initUpModeParam.timerInterruptEnable_TAIE = TIMER_A_TAIE_INTERRUPT_DISABLE;
+    initUpModeParam.captureCompareInterruptEnable_CCR0_CCIE =
+        TIMER_A_CAPTURECOMPARE_INTERRUPT_DISABLE;
+    initUpModeParam.timerClear = TIMER_A_SKIP_CLEAR;
+    initUpModeParam.startTimer = true;
+    Timer_A_initUpMode(TIMER_A0_BASE, &initUpModeParam);
+	
+
+    //Enter LPM3
+    _BIS_SR(LPM3_bits);
+}

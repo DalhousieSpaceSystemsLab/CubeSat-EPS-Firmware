@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include "driverlib.h"
 #include <msp430.h> 
+
 
 #include "LoadSwitches.h"
 #include "OBCUart.h"
@@ -23,9 +25,9 @@ int main(void){
 	while(1){
 	    //collect telemetry
 	    //monitor task
-	    //OBC communication task
 	    //battery task
 	    //go to sleep
+	    //OBC communication task
 	}
 
 
