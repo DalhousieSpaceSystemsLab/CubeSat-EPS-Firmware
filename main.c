@@ -2,18 +2,20 @@
 #include "driverlib.h"
 #include <msp430.h> 
 
-
+#include "common.h"
 #include "LoadSwitches.h"
 #include "OBCUart.h"
 
 /*
- * LoadSwitchISR.c
+ * main.c
  *
  *  Created on: Jan 15, 2021
  *      Author: Liam MacDonald, Brandon Allen, Mark McCoy
  */
 
-void load_switch_test(void);
+
+
+
 
 int main(void){
 	WDTCTL = WDTPW | WDTHOLD;	// stop watchdog timer
@@ -28,6 +30,9 @@ int main(void){
 	    //battery task
 	    //go to sleep
 	    //OBC communication task
+
+	    //wait 1 seconds
+
 	}
 
 

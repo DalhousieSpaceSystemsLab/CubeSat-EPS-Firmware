@@ -18,4 +18,6 @@ void uart_init(void);		//init UART A0 @ 9600 baudrate
 int uart_putchar(int c);	//send a sigle char
 int uart_puts(char *str);	//send a string
 
+void OBC_task(void);
+
 #endif
