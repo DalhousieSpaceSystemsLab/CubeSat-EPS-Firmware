@@ -3,6 +3,8 @@
 #include <msp430.h> 
 
 #include "common.h"
+#include "clock.h"
+
 #include "LoadSwitches.h"
 #include "OBCUart.h"
 
@@ -19,8 +21,11 @@
 
 int main(void){
 	WDTCTL = WDTPW | WDTHOLD;	// stop watchdog timer
-	__bis_SR_register(GIE);     //enables interrupts
+	__bis_SR_register(GIE);     //enable interrupts
 
+
+	clockInit();
+	systemTickInit();
 	init_fault_pins();
 	uart_init();
 

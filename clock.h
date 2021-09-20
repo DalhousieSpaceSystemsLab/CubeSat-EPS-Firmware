@@ -19,6 +19,9 @@
 #define delay_us(delay) __delay_cycles((long)(CPU_F*(((double)delay)/1000000.0)))
 #define delay_ms(delay) __delay_cycles((long)(CPU_F*(((double)delay)/1000.0)))
 
+extern volatile uint32_t sysTick_ms;
+
 void clockInit(void);
+void systemTickInit(void);
 
 #endif
